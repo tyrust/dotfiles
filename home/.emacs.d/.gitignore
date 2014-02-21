@@ -1,0 +1,11 @@
+*.orig
+*.rej
+*~
+.svn
+*.elc
+.git
+eproject.lst
+ac-comphist.dat
+elpa/
+desktops/
+.emacs*
