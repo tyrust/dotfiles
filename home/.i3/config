@@ -20,9 +20,6 @@ bindsym $mod+Return exec urxvt
 # kill focused window
 bindsym $mod+Shift+Q kill
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
-
 # change focus  
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -146,11 +143,12 @@ bindsym $mod+r mode "resize"
 
 # binds
 bindsym $mod+Shift+Return exec i3lock -i /home/tyrus/.wallpaper.png
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 
 # autoruns
 
 exec xmodmap ~/.xmodmap
-
 exec pa-applet
 exec nm-applet
 exec dropbox start
@@ -200,3 +198,7 @@ bar {
 }
 # END config.bar
 
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run -b -i -nb "$background" -nf "$gray" -sb "$background" -sf "$foreground" -p '#!' -fn -misc-*-medium-r-normal--18-*-*-*-*-*-iso10646-1
+
+for_window [class="^Google-chrome$"] border none

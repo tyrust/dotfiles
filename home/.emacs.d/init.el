@@ -23,6 +23,7 @@
 (require 'appearance)
 (require 'editing)
 (require 'minor_modes)
+(require 'google_conf)
 
 ;; Configurations
 ; (eval-after-load 'EXAMPLE-mode '(require 'setup-EXAMPLE))

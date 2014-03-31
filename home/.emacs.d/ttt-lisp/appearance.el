@@ -17,4 +17,19 @@
       (expand-file-name "themes/emacs-color-theme-solarized" ttt-emacs-config-dir))
 (load-theme 'solarized-dark t)
 
+;; highlight at character limits
+(defun font-lock-width-keyword (width)
+  "Return a font-lock style keyword for a string beyond width WIDTH
+that uses 'font-lock-warning-face'."
+  `((,(format "^%s\\(.+\\)" (make-string width ?.))
+     (1 font-lock-warning-face t))))
+
+(font-lock-add-keywords 'c++-mode (font-lock-width-keyword 80))
+(font-lock-add-keywords 'java-mode (font-lock-width-keyword 100))
+(font-lock-add-keywords 'js-mode (font-lock-width-keyword 80))
+(font-lock-add-keywords 'python-mode (font-lock-width-keyword 80))
+
+;; If the buffer in question is already displayed in a frame, raise that frame.
+(setq-default display-buffer-reuse-frames t)
+
 (provide 'appearance)

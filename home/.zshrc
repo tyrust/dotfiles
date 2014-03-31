@@ -59,4 +59,10 @@ fi
 
 export EDITOR=emacsclient
 
-source ~/.bash_aliases
+if [ -f ~/.bash_aliases ]; then
+  source ~/.bash_aliases
+fi
+
+if [ -f ~/.bash_extras ]; then
+  source ~/.bash_extras
+fi

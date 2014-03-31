@@ -59,6 +59,16 @@ File suffix is used to determine what program to run."
 ; bind it
 (global-set-key (kbd "<f8>") 'run-current-file)
 
+;; compilation
+(global-set-key "\C-cw" 'compile)
+(global-set-key "\C-ce" 'recompile)
+(global-set-key "\M-n" 'next-error)
+(global-set-key "\M-p" '(lambda () (interactive) (next-error -1)))
+; autosave everything when compiling
+(setq compilation-ask-about-save nil)
+; auto-scroll, but stop at first error
+(setq compilation-scroll-output 'first-error)
+
 ;; tab completion
 (setq read-file-name-completion-ignore-case t)
 
@@ -113,5 +123,8 @@ File suffix is used to determine what program to run."
 ;; IDO
 (require 'ido)
 (ido-mode t)
+
+;; don't fuck up
+(setq confirm-kill-emacs 'yes-or-no-p)
 
 (provide 'editing)
