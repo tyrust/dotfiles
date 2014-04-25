@@ -7,14 +7,12 @@ set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font xft:Ubuntu, 10
-#font pango:Source Code Pro, Semibold 8
+font xft:Ubuntu, 8
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-#bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec urxvt
 
 # kill focused window
@@ -45,10 +43,10 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
-# bindsym $mod+v split v
+bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
@@ -109,30 +107,30 @@ mode "resize" {
         # when pressing left, the window is resized so that it has
         # more space on its left
 
-bindsym h resize shrink left 10 px or 10 ppt
-bindsym Shift+H resize grow   left 10 px or 10 ppt
+        bindsym h resize shrink left 10 px or 10 ppt
+        bindsym Shift+H resize grow   left 10 px or 10 ppt
 
-bindsym j resize shrink down 10 px or 10 ppt
-bindsym Shift+J resize grow   down 10 px or 10 ppt
+        bindsym j resize shrink down 10 px or 10 ppt
+        bindsym Shift+J resize grow   down 10 px or 10 ppt
 
-bindsym k resize shrink up 10 px or 10 ppt
-bindsym Shift+K resize grow   up 10 px or 10 ppt
+        bindsym k resize shrink up 10 px or 10 ppt
+        bindsym Shift+K resize grow   up 10 px or 10 ppt
 
-bindsym l resize shrink right 10 px or 10 ppt
-bindsym Shift+L resize grow   right 10 px or 10 ppt
+        bindsym l resize shrink right 10 px or 10 ppt
+        bindsym Shift+L resize grow   right 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
-bindsym Left resize shrink left 10 px or 10 ppt
-bindsym Shift+Left resize grow   left 10 px or 10 ppt
+        bindsym Left resize shrink left 10 px or 10 ppt
+        bindsym Shift+Left resize grow   left 10 px or 10 ppt
 
-bindsym Down resize shrink down 10 px or 10 ppt
-bindsym Shift+Down resize grow   down 10 px or 10 ppt
+        bindsym Down resize shrink down 10 px or 10 ppt
+        bindsym Shift+Down resize grow   down 10 px or 10 ppt
 
-bindsym Up resize shrink up 10 px or 10 ppt
-bindsym Shift+Up resize grow   up 10 px or 10 ppt
+        bindsym Up resize shrink up 10 px or 10 ppt
+        bindsym Shift+Up resize grow   up 10 px or 10 ppt
 
-bindsym Right resize shrink right 10 px or 10 ppt
-bindsym Shift+Right resize grow   right 10 px or 10 ppt
+        bindsym Right resize shrink right 10 px or 10 ppt
+        bindsym Shift+Right resize grow   right 10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -149,7 +147,6 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 # autoruns
 
 exec xmodmap ~/.xmodmap
-exec pa-applet
 exec nm-applet
 exec dropbox start
 

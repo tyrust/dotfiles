@@ -23,11 +23,18 @@
 (require 'appearance)
 (require 'editing)
 (require 'minor_modes)
-(require 'google_conf)
+(require 'google_conf nil 'noerror)
+
+(require 'package)
+(add-to-list 'package-archives 
+    '("marmalade" .
+      "http://marmalade-repo.org/packages/"))
+(package-initialize)
 
 ;; Configurations
 ; (eval-after-load 'EXAMPLE-mode '(require 'setup-EXAMPLE))
 (eval-after-load 'tex '(require 'setup-latex))
+(eval-after-load 'go-mode '(require 'setup-go))
 
 (defun reload ()
   (interactive)
