@@ -28,7 +28,7 @@ File suffix is used to determine what program to run."
   (let (suffixMap fName suffix progName cmdStr)
 
     ;; a keyed list of file suffix to comand-line program path/name
-    (setq suffixMap 
+    (setq suffixMap
           '(
             ("php" . "php")
             ("pl" . "perl")
@@ -47,7 +47,7 @@ File suffix is used to determine what program to run."
     (setq cmdStr (concat progName " \""   fName "\""))
 
     (if (string-equal suffix "el") ; special case for emacs lisp
-        (load-file fName) 
+        (load-file fName)
       (if progName
         (progn
           (message "Running…")
@@ -94,10 +94,10 @@ File suffix is used to determine what program to run."
 (defun make-auto-save-file-name ()
   "Return file name to use for auto-saves of current buffer.."
   (if buffer-file-name
-      (if (file-exists-p "~/.autosaves/") 
+      (if (file-exists-p "~/.autosaves/")
           (concat (expand-file-name "~/.autosaves/") "#"
                   (replace-regexp-in-string "/" "!" buffer-file-name)
-                  "#") 
+                  "#")
          (concat
           (file-name-directory buffer-file-name)
           "#"
@@ -123,6 +123,10 @@ File suffix is used to determine what program to run."
 ;; IDO
 (require 'ido)
 (ido-mode t)
+
+;; Persp mode
+(require 'perspective)
+(persp-mode t)
 
 ;; don't fuck up
 (setq confirm-kill-emacs 'yes-or-no-p)

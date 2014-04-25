@@ -9,6 +9,11 @@ Xft.rgba: rgb
 *font:        xft:ubuntu mono:size=12:style=regular:antialias=true
 *boldFont:    xft:ubuntu mono:size=12:style=bold:antialias=true
 
+! URxvt things
+URxvt.perl-ext-common: ...,url-select
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.underline: true
+
 ! Emacs is special
 Emacs.FontBackend: xft
 Emacs.font: Ubuntu Mono-12
@@ -64,7 +69,7 @@ Emacs.verticalScrollBars: off
 
 URxvt*background:              S_base03
 URxvt*foreground:              S_base0
-URxvt*fading:                  40
+URxvt*fading:                  20
 URxvt*fadeColor:               S_base03
 URxvt*cursorColor:             S_base1
 URxvt*pointerColorBackground:  S_base01

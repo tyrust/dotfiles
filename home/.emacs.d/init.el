@@ -26,7 +26,7 @@
 (require 'google_conf nil 'noerror)
 
 (require 'package)
-(add-to-list 'package-archives 
+(add-to-list 'package-archives
     '("marmalade" .
       "http://marmalade-repo.org/packages/"))
 (package-initialize)
