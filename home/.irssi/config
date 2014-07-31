@@ -2,10 +2,15 @@ settings = {
   core = {
     real_name = "Tyrus Tenneson";
     user_name = "tyrus";
-    nick = "test";
+    nick = "tyrus";
   };
   "fe-text" = { actlist_sort = "refnum"; };
-  "perl/core/scripts" = { awl_shared_sbar = "OFF"; awl_viewer = "no"; };
+  "perl/core/scripts" = {
+    awl_shared_sbar = "OFF";
+    awl_viewer = "no";
+    comlink_msg_suffix = " ";
+    comlink_prefix = "~";
+  };
   "fe-common/core" = {
     theme = "solarized-universal";
     hilight_color = "%R";
@@ -13,14 +18,23 @@ settings = {
 };
 
 servers = (
-  { address = "irc.ubuntu.com"; chatnet = "Ubuntu"; port = "8001"; }
+  { address = "irc.ubuntu.com"; chatnet = "Ubuntu"; port = "8001"; },
+  {
+    address = "irc.corp.google.com";
+    chatnet = "google";
+    port = "6697";
+    use_ssl = "yes";
+    autoconnect = "true";
+  }
 );
 
-chatnets = { Ubuntu = { type = "IRC"; }; };
+chatnets = { Ubuntu = { type = "IRC"; }; google = { type = "IRC"; }; };
 
 channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
-  { name = "silc"; chatnet = "silc"; autojoin = "No"; }
+  { name = "silc"; chatnet = "silc"; autojoin = "No"; },
+  { name = "#indexing-sre"; chatnet = "google"; autojoin = "Yes"; },
+  { name = "#union-watchers"; chatnet = "google"; autojoin = "Yes"; }
 );
 
 aliases = {
