@@ -7,7 +7,7 @@ set $mod Mod4
 
 # font for window titles. ISO 10646 = Unicode
 #font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font xft:Ubuntu, 8
+font xft:Ubuntu, 10
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -18,7 +18,7 @@ bindsym $mod+Return exec urxvt
 # kill focused window
 bindsym $mod+Shift+Q kill
 
-# change focus  
+# change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -149,6 +149,7 @@ bindsym XF86AudioLowerVolume exec amixer -q set Master 5%- unmute
 exec xmodmap ~/.xmodmap
 exec nm-applet
 exec dropbox start
+exec xrdb ~/.Xresources
 
 # wallpaper
 exec_always feh --bg-fill /home/tyrus/.wallpaper.jpg
@@ -185,7 +186,7 @@ bar {
     colors {
         background $background
         statusline $foreground
-        
+
         # Colors           <border>    <background> <text>
         focused_workspace  $primary    $primary     $background
         active_workspace   $primary    $background  $foreground

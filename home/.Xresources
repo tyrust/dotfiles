@@ -4,10 +4,10 @@ Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintslight
 Xft.hinting: 1
 Xft.antialias: 1
-Xft.rgba: rgb
+Xft.rgba: none
 
-*font:        xft:ubuntu mono:size=12:style=regular:antialias=true
-*boldFont:    xft:ubuntu mono:size=12:style=bold:antialias=true
+*font:        xft:ubuntu mono:size=11:style=regular:antialias=true
+*boldFont:    xft:ubuntu mono:size=11:style=bold:antialias=true
 
 ! URxvt things
 URxvt.perl-ext-common: ...,url-select
@@ -16,7 +16,7 @@ URxvt.url-select.underline: true
 
 ! Emacs is special
 Emacs.FontBackend: xft
-Emacs.font: Ubuntu Mono-12
+Emacs.font: Ubuntu Mono-11
 Emacs.menuBar: off
 Emacs.toolBar: off
 Emacs.verticalScrollBars: off

@@ -71,7 +71,7 @@ sub on_start {
 		}
 	} else {
 		@{$self->{pattern}} = qr{
-			(?:https?://|ftp://|news://|mailto:|file://|\bwww\.|(b|cl|go)/)
+			(?:https?://|ftp://|news://|mailto:|file://|\bwww\.)
 			[\w\-\@;\/?:&=%\$.+!*\x27,~#]*
 			(
 				\([\w\-\@;\/?:&=%\$.+!*\x27,~#]*\)   # Allow a pair of matched parentheses
@@ -79,6 +79,7 @@ sub on_start {
 				[\w\-\@;\/?:&=%\$+*~]                # exclude some trailing characters (heuristic)
 			)+
 		}x;
+                push @{$self->{pattern}}, qr{(b|cl)/[0-9]+}
 	}
 
 	()

@@ -125,8 +125,14 @@ File suffix is used to determine what program to run."
 (ido-mode t)
 
 ;; Persp mode
-(require 'perspective)
-(persp-mode t)
+(unless (fboundp 'with-eval-after-load)
+  (defmacro with-eval-after-load (file &rest body)
+    (declare (indent 1) (debug t))
+    `(eval-after-load ,file '(progn ,@body))))
+
+(with-eval-after-load "persp-mode-autoloads"
+  (setq wg-morph-on nil) ;; switch off animation of restoring window configuration
+  (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
 
 ;; don't fuck up
 (setq confirm-kill-emacs 'yes-or-no-p)
