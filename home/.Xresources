@@ -13,13 +13,14 @@ Xft.rgba: none
 URxvt.perl-ext-common: ...,url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.underline: true
+URxvt.scrollBar: false
 
 ! Emacs is special
-Emacs.FontBackend: xft
-Emacs.font: Ubuntu Mono-11
-Emacs.menuBar: off
-Emacs.toolBar: off
-Emacs.verticalScrollBars: off
+emacs.FontBackend: xft
+emacs.font: Ubuntu Mono-11
+emacs.menuBar: off
+emacs.toolBar: off
+emacs.verticalScrollBars: off
 
 ! Solarized color scheme for the X Window System
 !

@@ -1,6 +1,7 @@
 ;;; appearance.el
 ;;; Generic appearance settings.
-(set-default-font "Ubuntu Mono-11")
+(add-to-list 'default-frame-alist
+             '(font . "Ubuntu Mono-11"))
 
 ;; scroll size
 (setq next-screen-context-lines 10)
