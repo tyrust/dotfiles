@@ -6,6 +6,7 @@ Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: none
 
+
 *font:        xft:ubuntu mono:size=11:style=regular:antialias=true
 *boldFont:    xft:ubuntu mono:size=11:style=bold:antialias=true
 

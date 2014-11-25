@@ -32,7 +32,7 @@ that uses 'font-lock-warning-face'."
 (font-lock-add-keywords 'python-mode (font-lock-width-keyword 80))
 
 ;; Whitespace
-;(setq-default 'show-trailing-whitespace t)
+(setq-default 'show-trailing-whitespace t)
 
 ;; If the buffer in question is already displayed in a frame, raise that frame.
 (setq-default display-buffer-reuse-frames t)

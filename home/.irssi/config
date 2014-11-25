@@ -19,22 +19,13 @@ settings = {
 
 servers = (
   { address = "irc.ubuntu.com"; chatnet = "Ubuntu"; port = "8001"; },
-  {
-    address = "irc.corp.google.com";
-    chatnet = "google";
-    port = "6697";
-    use_ssl = "yes";
-    autoconnect = "true";
-  }
 );
 
-chatnets = { Ubuntu = { type = "IRC"; }; google = { type = "IRC"; }; };
+chatnets = { Ubuntu = { type = "IRC"; }; };
 
 channels = (
   { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
   { name = "silc"; chatnet = "silc"; autojoin = "No"; },
-  { name = "#indexing-sre"; chatnet = "google"; autojoin = "Yes"; },
-  { name = "#union-watchers"; chatnet = "google"; autojoin = "Yes"; }
 );
 
 aliases = {

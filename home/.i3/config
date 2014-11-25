@@ -184,6 +184,9 @@ client.urgent           $warning $warning $foreground $warning
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
+# start dmenu (a program launcher)
+bindsym $mod+d exec dmenu_run -nb '$background' -nf '$gray' -sb '$background' -sf '$foreground' -p '#!'
+
 bar {
     status_command    i3status | ~/bin/i3status_wrapper.py
     position          bottom
@@ -202,7 +205,8 @@ bar {
 }
 # END config.bar
 
-# start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run -b -i -nb "$background" -nf "$gray" -sb "$background" -sf "$foreground" -p '#!' -fn -misc-*-medium-r-normal--18-*-*-*-*-*-iso10646-1
-
 for_window [class="^Google-chrome$"] border none
+
+# Bind the Fn+F3/Fn+F4 keys to lock/lock & suspend respectively
+bindsym XF86ScreenSaver exec --no-startup-id i3lock -i ~/.wallpaper.png
+bindsym XF86Sleep exec --no-startup-id i3lock -i ~/.wallpaper.png && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
