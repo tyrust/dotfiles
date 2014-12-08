@@ -1,22 +1,15 @@
 ! Font things
-Xft.dpi: 96.0
-Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintslight
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: none
-
-
-*font:        xft:ubuntu mono:size=11:style=regular:antialias=true
-*boldFont:    xft:ubuntu mono:size=11:style=bold:antialias=true
+*font:        xft:ubuntu mono:size=11:style=regular
+*boldFont:    xft:ubuntu mono:size=11:style=bold
 
 ! URxvt things
-URxvt.perl-ext-common: ...,url-select
+URxvt.perl-ext-common: url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.underline: true
 URxvt.scrollBar: false
+URxvt.letterSpace: -1
 
-! Emacs is special
+! Emacs things
 emacs.FontBackend: xft
 emacs.font: Ubuntu Mono-11
 emacs.menuBar: off

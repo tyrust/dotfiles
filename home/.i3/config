@@ -152,10 +152,9 @@ bindsym $mod+n move workspace to output left
 
 # autoruns
 
-exec xmodmap ~/.xmodmap
 exec nm-applet
-exec dropbox start
-exec xrdb ~/.Xresources
+exec xmodmap ~/.xmodmap
+exec xrdb -merge ~/.Xresources
 
 # wallpaper
 exec_always feh --bg-fill /home/tyrus/.wallpaper.jpg

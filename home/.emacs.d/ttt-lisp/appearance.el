@@ -16,8 +16,13 @@
 
 ;; Themes
 (add-to-list 'custom-theme-load-path
-      (expand-file-name "themes/emacs-color-theme-solarized" ttt-emacs-config-dir))
-(load-theme 'solarized-dark t)
+    (expand-file-name "themes/emacs-color-theme-solarized" ttt-emacs-config-dir))
+(if (daemonp)
+    (add-hook 'after-make-frame-functions
+        (lambda (frame)
+            (with-selected-frame frame
+                (load-theme 'solarized-dark t))))
+    (load-theme 'solarized-dark t))
 
 ;; highlight at character limits
 (defun font-lock-width-keyword (width)
@@ -30,9 +35,6 @@ that uses 'font-lock-warning-face'."
 (font-lock-add-keywords 'java-mode (font-lock-width-keyword 100))
 (font-lock-add-keywords 'js-mode (font-lock-width-keyword 80))
 (font-lock-add-keywords 'python-mode (font-lock-width-keyword 80))
-
-;; Whitespace
-(setq-default 'show-trailing-whitespace t)
 
 ;; If the buffer in question is already displayed in a frame, raise that frame.
 (setq-default display-buffer-reuse-frames t)
