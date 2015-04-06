@@ -1,6 +1,6 @@
 ! Font things
-*font:        xft:ubuntu mono:size=11:style=regular
-*boldFont:    xft:ubuntu mono:size=11:style=bold
+*font:        xft:ubuntu mono:pixelsize=14:style=regular
+*boldFont:    xft:ubuntu mono:pixelsize=14:style=bold
 
 ! URxvt things
 URxvt.perl-ext-common: url-select
@@ -8,10 +8,10 @@ URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.underline: true
 URxvt.scrollBar: false
 URxvt.letterSpace: -1
+URxvt.urgentOnBell: true
 
 ! Emacs things
-emacs.FontBackend: xft
-emacs.font: Ubuntu Mono-11
+emacs.font: Ubuntu Mono:pixelsize=14
 emacs.menuBar: off
 emacs.toolBar: off
 emacs.verticalScrollBars: off

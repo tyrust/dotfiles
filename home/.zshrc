@@ -51,13 +51,15 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
+export EDITOR=emacsclient
 if [ -n "$INSIDE_EMACS" ]; then
   chpwd() { print -P "\033AnSiTc %d" }
   print -P "\033AnSiTu %n"
   print -P "\033AnSiTc %d"
 fi
 
-export EDITOR=emacsclient
+function alert() { echo -n \\a }
+precmd_functions+=(alert)
 
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases

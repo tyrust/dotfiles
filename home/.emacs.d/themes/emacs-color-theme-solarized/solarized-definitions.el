@@ -537,7 +537,9 @@ the \"Gen RGB\" column in solarized-definitions.el to improve them further."
              (term-color-blue ((t ( ,@fg-blue))))
              (term-color-magenta ((t ( ,@fg-magenta))))
              (term-color-cyan ((t ( ,@fg-cyan))))
-             (term-color-white ((t ( ,@fg-base00)))))
+             (term-color-white ((t ( ,@fg-base00))))
+             (which-func
+              ((t (,@fg-base1 ,@bg-base02 ,@fmt-revbb :box nil)))))
 
             ((foreground-color . ,(when (<= 16 (display-color-cells)) base0))
              (background-color . ,back)

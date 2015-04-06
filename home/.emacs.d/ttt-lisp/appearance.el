@@ -1,7 +1,7 @@
 ;;; appearance.el
 ;;; Generic appearance settings.
 (add-to-list 'default-frame-alist
-             '(font . "Ubuntu Mono-11"))
+             '(font . "Ubuntu Mono:pixelsize=14"))
 
 ;; scroll size
 (setq next-screen-context-lines 10)
@@ -38,5 +38,33 @@ that uses 'font-lock-warning-face'."
 
 ;; If the buffer in question is already displayed in a frame, raise that frame.
 (setq-default display-buffer-reuse-frames t)
+
+;; Makes *scratch* empty.
+(setq initial-scratch-message "")
+
+;; Removes *messages* from the buffer.
+(setq-default message-log-max nil)
+(kill-buffer "*Messages*")
+
+;; Removes *Completions* from buffer after you've opened a file.
+(add-hook 'minibuffer-exit-hook
+      '(lambda ()
+         (let ((buffer "*Completions*"))
+           (and (get-buffer buffer)
+                (kill-buffer buffer)))))
+
+;; Don't show *Buffer list* when opening multiple files at the same time.
+(setq inhibit-startup-buffer-menu t)
+
+;; Show only one active window when opening multiple files at the same time.
+(add-hook 'window-setup-hook 'delete-other-windows)
+
+;; ansi-color for compilation
+(ignore-errors
+  (require 'ansi-color)
+  (defun my-colorize-compilation-buffer ()
+    (when (eq major-mode 'compilation-mode)
+      (ansi-color-apply-on-region compilation-filter-start (point-max))))
+  (add-hook 'compilation-filter-hook 'my-colorize-compilation-buffer))
 
 (provide 'appearance)

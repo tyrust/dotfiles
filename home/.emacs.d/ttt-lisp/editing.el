@@ -134,6 +134,9 @@ File suffix is used to determine what program to run."
   (setq wg-morph-on nil) ;; switch off animation of restoring window configuration
   (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
 
+;; No more typing the whole yes or no. Just y or n will do.
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; don't fuck up
 (setq confirm-kill-emacs 'yes-or-no-p)
 
