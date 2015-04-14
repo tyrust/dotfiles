@@ -71,7 +71,7 @@ def handle_line():
 
 def song_info():
     cmd =  ("xwininfo -tree -root | grep -v xwininfo | grep 'Google Play Music'"
-           " | cut -d\\\" -f2 | perl -pe 's/(.*?) \- (.*?) \-.*/\\1 by \\2/'")
+           " | cut -d\\\" -f2 | perl -pe 's/(.*?) \- (.*?) \-.*/\\1 - \\2/'")
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
     out, err = p.communicate()
     return str.rstrip(out).decode('utf-8')
