@@ -64,8 +64,9 @@ File suffix is used to determine what program to run."
 (global-set-key "\C-ce" 'recompile)
 (global-set-key "\M-n" 'next-error)
 (global-set-key "\M-p" '(lambda () (interactive) (next-error -1)))
-; autosave everything when compiling
+; just fucking compile
 (setq compilation-ask-about-save nil)
+(setq compilation-always-kill t)
 ; auto-scroll, but stop at first error
 (setq compilation-scroll-output 'first-error)
 

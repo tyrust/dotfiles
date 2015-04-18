@@ -210,3 +210,4 @@ exec_always feh --bg-fill /home/tyrus/.wallpaper.jpg
 # special window handling
 for_window [class="^Google-chrome$"] border none
 for_window [class="^Steam$"] border none, floating enable
+for_window [class="Nautilus" instance="file_progress"] floating enable
