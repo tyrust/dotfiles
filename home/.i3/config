@@ -141,7 +141,7 @@ bindsym $mod+r mode "resize"
 # Below lies my nonsense.
 
 # exec
-bindsym $mod+Shift+Return exec ~/bin/lock.sh
+bindsym $mod+Shift+Return exec ~/.i3/lock.sh
 bindsym $mod+x exec dmenu_run -nb '$background' -nf '$gray' -sb '$background' -sf '$foreground' -p '#!'
 # navigation
 bindsym $mod+d workspace back_and_forth
@@ -155,7 +155,7 @@ bindsym XF86AudioMute exec amixer -qD pulse set Master toggle
 bindsym XF86AudioLowerVolume exec amixer -qD pulse set Master 5%- unmute
 bindsym XF86AudioRaiseVolume exec amixer -qD pulse set Master 5%+ unmute
 # power
-bindsym XF86ScreenSaver exec --no-startup-id i3lock -i ~/.wallpaper.png
+bindsym XF86ScreenSaver exec ~/bin/lock.sh
 bindsym XF86Sleep exec --no-startup-id i3lock -i ~/.wallpaper.png && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
 # disable chrome close-all keybinding, see:
 # https://code.google.com/p/chromium/issues/detail?id=313391
