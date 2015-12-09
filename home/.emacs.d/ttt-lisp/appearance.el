@@ -17,12 +17,14 @@
 ;; Themes
 (add-to-list 'custom-theme-load-path
     (expand-file-name "themes/emacs-color-theme-solarized" ttt-emacs-config-dir))
+(set-frame-parameter nil 'background-mode 'dark)
+(set-terminal-parameter nil 'background-mode 'dark)
 (if (daemonp)
     (add-hook 'after-make-frame-functions
         (lambda (frame)
             (with-selected-frame frame
-                (load-theme 'solarized-dark t))))
-    (load-theme 'solarized-dark t))
+                (load-theme 'solarized t))))
+    (load-theme 'solarized t))
 
 ;; highlight at character limits
 (defun font-lock-width-keyword (width)
