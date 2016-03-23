@@ -131,6 +131,9 @@ mode "resize" {
         bindsym Right resize shrink right 10 px or 10 ppt
         bindsym Shift+Right resize grow   right 10 px or 10 ppt
 
+        bindsym s exec i3-input -F 'resize set %s' -P 'size <width> <height>: '
+        bindsym m exec i3-input -F 'move position %s' -P 'move to <x> <y>: '
+
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -147,7 +150,9 @@ bindsym $mod+x exec dmenu_run -nb '$background' -nf '$gray' -sb '$background' -s
 bindsym $mod+d workspace back_and_forth
 # window management
 bindsym $mod+Shift+d move container to workspace back_and_forth
+bindsym $mod+Shift+s sticky toggle
 bindsym $mod+Shift+w exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
+bindsym $mod+c floating enable, resize set 576 589, move position 0 589
 bindsym $mod+m move workspace to output right
 bindsym $mod+n move workspace to output left
 # volume
@@ -187,10 +192,28 @@ client.urgent           $warning $warning $foreground $warning
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+    output DP-1
     status_command    i3status | ~/.i3/i3status_wrapper.py
     position          bottom
     workspace_buttons yes
     tray_output       primary
+
+    colors {
+        background $background
+        statusline $foreground
+
+        # Colors           <border>    <background> <text>
+        focused_workspace  $primary    $primary     $background
+        active_workspace   $primary    $background  $foreground
+        inactive_workspace $background $background  $foreground
+        urgent_workspace   $foreground $warning
+    }
+}
+
+bar {
+    output DVI-I-1
+    workspace_buttons yes
+    tray_output none
 
     colors {
         background $background
