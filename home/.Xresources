@@ -1,5 +1,6 @@
 ! Font things
-*font:        xft:ubuntu mono:pixelsize=14:style=regular
+*font:        xft:ubuntu mono:pixelsize=14:style=regular,\
+              xft:Symbola:pixelsize=10
 *boldFont:    xft:ubuntu mono:pixelsize=14:style=bold
 
 ! URxvt things
