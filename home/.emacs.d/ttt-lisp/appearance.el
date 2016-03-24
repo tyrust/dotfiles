@@ -15,16 +15,27 @@
 (setq uniquify-buffer-name-style 'reverse)
 
 ;; Themes
+; Solarized - https://github.com/sellout/emacs-color-theme-solarized
 (add-to-list 'custom-theme-load-path
     (expand-file-name "themes/emacs-color-theme-solarized" ttt-emacs-config-dir))
-(set-frame-parameter nil 'background-mode 'dark)
-(set-terminal-parameter nil 'background-mode 'dark)
+(setq frame-background-mode 'dark)
+(load-theme 'solarized t)
 (if (daemonp)
     (add-hook 'after-make-frame-functions
         (lambda (frame)
             (with-selected-frame frame
-                (load-theme 'solarized t))))
-    (load-theme 'solarized t))
+                (enable-theme 'solarized))))
+    (enable-theme 'solarized))
+
+; Modeline - https://github.com/Malabarba/smart-mode-line
+(setq sml/theme 'respectful)
+(sml/setup)
+
+(setq sml/replacer-regexp-list
+      '(("^~/\\.homesick/repos/dotfiles/home/" ":df:")))
+; rich-minority-mode configuration - show only select minor modes
+(mapc (lambda (pair) (add-to-list 'rm-blacklist pair t))
+      '(" company" " ycmd" " Server"))
 
 ;; highlight at character limits
 (defun font-lock-width-keyword (width)
@@ -45,8 +56,8 @@ that uses 'font-lock-warning-face'."
 (setq initial-scratch-message "")
 
 ;; Removes *messages* from the buffer.
-(setq-default message-log-max nil)
-(kill-buffer "*Messages*")
+;(setq-default message-log-max nil)
+;(kill-buffer "*Messages*")
 
 ;; Removes *Completions* from buffer after you've opened a file.
 (add-hook 'minibuffer-exit-hook
