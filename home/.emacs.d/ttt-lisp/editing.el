@@ -213,4 +213,8 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;; don't fuck up
 (setq confirm-kill-emacs 'yes-or-no-p)
 
+;; Tramp
+(setq tramp-default-method "ssh")
+
+
 (provide 'editing)
