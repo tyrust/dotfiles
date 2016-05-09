@@ -159,20 +159,24 @@ bindsym $mod+n move workspace to output left
 bindsym XF86AudioMute exec amixer -qD pulse set Master toggle
 bindsym XF86AudioLowerVolume exec amixer -qD pulse set Master 5%- unmute
 bindsym XF86AudioRaiseVolume exec amixer -qD pulse set Master 5%+ unmute
+# mic
+bindsym XF86AudioMicMute exec amixer -qD pulse set 'Capture' toggle
 # power
-bindsym XF86ScreenSaver exec ~/bin/lock.sh
-bindsym XF86Sleep exec --no-startup-id i3lock -i ~/.wallpaper.png && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+bindsym $mod+XF86LaunchA exec ~/bin/lock.sh
+bindsym $mod+XF86Explorer exec --no-startup-id i3lock -i ~/.wallpaper.png && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+# screen
+set $bl_notify notify-send -t 1 "☀ $(xbacklight -get | xargs printf %.0f)"
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && $bl_notify
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 && $bl_notify
 # disable chrome close-all keybinding, see:
 # https://code.google.com/p/chromium/issues/detail?id=313391
 bindsym Control+Shift+q exec :
 
 # autoruns
-exec caffeine
 exec emacs --daemon
 exec nm-applet
-exec xmodmap ~/.xmodmap
+exec setxkbmap -option "ctrl:swapcaps"
 exec xrdb -merge ~/.Xresources
-exec ~/.dropbox-dist/dropboxd
 
 # colors
 set $background #201a10
