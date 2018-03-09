@@ -1,0 +1,81 @@
+# Use this file with inwee or WeeChat's FIFO pipe to quickly configure WeeChat.
+# See https://github.com/susam/inwee
+
+/set irc.server_default.capabilities account-notify,away-notify,cap-notify,multi-prefix,server-time,znc.in/server-time-iso,znc.in/self-message
+/script install autosort.py colorize_nicks.py go.py
+
+# Solarized Colors
+/color alias 008 base03
+/color alias 000 base02
+/color alias 010 base01
+/color alias 011 base00
+/color alias 012 base0
+/color alias 014 base1
+/color alias 007 base2
+/color alias 015 base3
+/color alias 136 yellow
+/color alias 166 orange
+/color alias 160 red
+/color alias 125 magenta
+/color alias 061 violet
+/color alias 033 blue
+/color alias 037 cyan
+/color alias 064 green
+
+# Buflist
+## Appearance
+/set weechat.bar.buflist.position top
+/set buflist.format.hotlist_message "${color:orange}"
+/set buflist.format.buffer_current "${color:,base02}${format_buffer}"
+## Autosort
+/set irc.look.server_buffer independent
+### Don't run these twice, it pollutes autosort.conf.
+#### slack last
+# /autosort rules insert 1 ${if:${buffer.full_name}=**slack.com*}
+
+/set weechat.bar.status.color_bg base02
+/set weechat.bar.title.color_bg base02
+
+# Chat Area
+/set weechat.color.chat_highlight magenta
+/set weechat.color.chat_highlight_bg base02
+/set weechat.look.prefix_align_min 10
+/set weechat.look.prefix_align_max 10
+/set weechat.look.prefix_same_nick "⤷"
+/set weechat.look.prefix_error "⚠"
+/set weechat.look.prefix_network "ℹ "
+/set weechat.look.prefix_action "⚡"
+/set weechat.look.bar_more_down "▼▼"
+/set weechat.look.bar_more_left "◀◀"
+/set weechat.look.bar_more_right "▶▶"
+/set weechat.look.bar_more_up "▲▲"
+/set weechat.look.prefix_suffix "╡"
+/set weechat.look.scroll_page_percent 50
+## Support Long URLS - Causes weirdness, not using for now.
+# /set weechat.look.align_multiline_words off
+# /set weechat.look.eat_newline_glitch on
+
+# Status Bar
+/set weechat.bar.status.items "[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,scroll,[lag],[hotlist],completion"
+
+# Input Bar
+## go.py
+/key bind meta-g /go
+/set plugins.var.python.go.color_number yellow,default
+/set plugins.var.python.go.color_number_selected yellow,base02
+/set plugins.var.python.go.color_name default,default
+/set plugins.var.python.go.color_name_selected default,base02
+/set plugins.var.python.go.color_name_highlight base03,yellow
+/set plugins.var.python.go.color_name_highlight_selected base03,red
+/set plugins.var.python.go.short_name on
+
+# Misc
+## Appearance
+/set weechat.look.window_title "weechat"
+/set irc.server_default.msg_part ""
+/set irc.server_default.msg_quit ""
+## Binds
+/key bind meta-n /bar toggle nicklist
+
+/save
+/print Saved configuration
