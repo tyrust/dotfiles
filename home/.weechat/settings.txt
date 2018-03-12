@@ -2,7 +2,7 @@
 # See https://github.com/susam/inwee
 
 /set irc.server_default.capabilities account-notify,away-notify,cap-notify,multi-prefix,server-time,znc.in/server-time-iso,znc.in/self-message
-/script install autosort.py colorize_nicks.py go.py
+/script install autosort.py colorize_nicks.py go.py jabber.py
 
 # Solarized Colors
 /color alias 008 base03
@@ -32,6 +32,9 @@
 ### Don't run these twice, it pollutes autosort.conf.
 #### slack last
 # /autosort rules insert 1 ${if:${buffer.full_name}=**slack.com*}
+# /autosort rules insert 6 ${if:${plugin}==python?${info:autosort_order,${type},server,*,channel,private}}
+## Status Filters
+/filter add jabber_joinquit python.jabber.server* * has (joined|status|quit)
 
 /set weechat.bar.status.color_bg base02
 /set weechat.bar.title.color_bg base02
@@ -54,6 +57,9 @@
 ## Support Long URLS - Causes weirdness, not using for now.
 # /set weechat.look.align_multiline_words off
 # /set weechat.look.eat_newline_glitch on
+
+# Nicklist Bar
+/set irc.look.color_nicks_in_nicklist on
 
 # Status Bar
 /set weechat.bar.status.items "[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,scroll,[lag],[hotlist],completion"
