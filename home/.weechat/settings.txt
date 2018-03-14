@@ -2,7 +2,7 @@
 # See https://github.com/susam/inwee
 
 /set irc.server_default.capabilities account-notify,away-notify,cap-notify,multi-prefix,server-time,znc.in/server-time-iso,znc.in/self-message
-/script install autosort.py colorize_nicks.py go.py jabber.py
+/script install autosort.py colorize_nicks.py spell_correction.py go.py jabber.py
 
 # Solarized Colors
 /color alias 008 base03
@@ -40,8 +40,8 @@
 /set weechat.bar.title.color_bg base02
 
 # Chat Area
-/set weechat.color.chat_highlight magenta
-/set weechat.color.chat_highlight_bg base02
+/set weechat.color.chat_highlight base03
+/set weechat.color.chat_highlight_bg red
 /set weechat.look.prefix_align_min 10
 /set weechat.look.prefix_align_max 10
 /set weechat.look.prefix_same_nick "⤷"
@@ -65,6 +65,11 @@
 /set weechat.bar.status.items "[buffer_plugin],buffer_number+:+buffer_name+(buffer_modes)+{buffer_nicklist_count}+buffer_zoom+buffer_filter,scroll,[lag],[hotlist],completion"
 
 # Input Bar
+/set weechat.bar.input.items [input_prompt]+(away),[input_search],[input_paste],input_text,[spell_correction]
+## aspell
+/aspell enable
+/set aspell.check.suggestions 3
+/set aspell.check.default_dict "en"
 ## go.py
 /key bind meta-g /go
 /set plugins.var.python.go.color_number yellow,default
