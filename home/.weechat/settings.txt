@@ -97,6 +97,8 @@
 /set irc.server_default.msg_quit ""
 ## Binds
 /key bind meta-n /bar toggle nicklist
+/key bind meta-meta2-5~ /window page_up -window 2
+/key bind meta-meta2-6~ /window page_down -window 2
 
 /save
 /print Saved configuration
