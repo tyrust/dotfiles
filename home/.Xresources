@@ -8,7 +8,7 @@ URxvt.perl-ext-common: url-select
 URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.underline: true
 URxvt.scrollBar: false
-URxvt.letterSpace: -1
+!URxvt.letterSpace: -1
 URxvt.urgentOnBell: true
 
 ! Emacs things
