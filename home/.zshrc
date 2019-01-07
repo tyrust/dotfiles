@@ -14,9 +14,6 @@ plugins=(git ssh-agent virtualenv)
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export PATH=$PATH:/usr/local/heroku/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/tyrus/play-2.1.0
-
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
@@ -30,6 +27,19 @@ fi
 
 function alert() { echo -n \\a }
 precmd_functions+=(alert)
+
+# Add colors to `man`.
+man() {
+    env \
+        LESS_TERMCAP_mb=$'\e[1;32m' \
+        LESS_TERMCAP_md=$'\e[1;38;5;136m' \
+        LESS_TERMCAP_me=$'\e[0m' \
+        LESS_TERMCAP_se=$'\e[0m' \
+        LESS_TERMCAP_so=$'\e[38;5;246m' \
+        LESS_TERMCAP_ue=$'\e[0m' \
+        LESS_TERMCAP_us=$'\e[04;38;5;146m' \
+            man "$@"
+}
 
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases
