@@ -4,18 +4,23 @@
 *boldFont:    xft:ubuntu mono:pixelsize=14:style=bold
 
 ! URxvt things
-URxvt.perl-ext-common: url-select
-URxvt.keysym.M-u: perl:url-select:select_next
-URxvt.url-select.underline: true
 URxvt.scrollBar: false
 URxvt.letterSpace: -1
 URxvt.urgentOnBell: true
+
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: sensible-browser
+URxvt.keysym.C-u: perl:matcher:last
+URxvt.keysym.M-u: perl:matcher:list
 
 ! Emacs things
 emacs.font: Ubuntu Mono:pixelsize=14
 emacs.menuBar: off
 emacs.toolBar: off
 emacs.verticalScrollBars: off
+
+! cursor
+Xcursor.size: 14
 
 ! Solarized color scheme for the X Window System
 !
