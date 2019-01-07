@@ -2,7 +2,7 @@
 # See https://github.com/susam/inwee
 
 /set irc.server_default.capabilities account-notify,away-notify,cap-notify,multi-prefix,server-time,znc.in/server-time-iso,znc.in/self-message
-/script install autosort.py colorize_nicks.py spell_correction.py go.py jabber.py
+/script install autosort.py colorize_nicks.py spell_correction.py go.py
 
 # Solarized Colors
 /color alias 008 base03
@@ -33,15 +33,13 @@
 #### slack last
 # /autosort rules insert 1 ${if:${buffer.full_name}=**slack.com*}
 # /autosort rules insert 6 ${if:${plugin}==python?${info:autosort_order,${type},server,*,channel,private}}
-## Status Filters
-/filter add jabber_joinquit python.jabber.server* * has (joined|status|quit)
 
 # Chat Area
 /set weechat.color.chat_highlight base03
 /set weechat.color.chat_highlight_bg red
 /set weechat.look.prefix_align_min 10
 /set weechat.look.prefix_align_max 10
-/set weechat.look.prefix_same_nick "⤷"
+/set weechat.look.prefix_same_nick "↳"
 /set weechat.look.prefix_error "⚠"
 /set weechat.look.prefix_network "ℹ "
 /set weechat.look.prefix_action "⚡"
