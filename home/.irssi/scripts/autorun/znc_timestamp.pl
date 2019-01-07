@@ -1,1 +1,0 @@
-../znc_timestamp.pl
