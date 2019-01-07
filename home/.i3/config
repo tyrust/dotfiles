@@ -144,7 +144,7 @@ bindsym $mod+r mode "resize"
 # Below lies my nonsense.
 
 # exec
-bindsym $mod+Shift+Return exec ~/.i3/lock.sh
+bindsym $mod+Shift+Return exec xset s activate
 bindsym $mod+x exec dmenu_run -nb '$background' -nf '$gray' -sb '$background' -sf '$foreground' -p '#!'
 # navigation
 bindsym $mod+d workspace back_and_forth
@@ -152,18 +152,17 @@ bindsym $mod+d workspace back_and_forth
 bindsym $mod+Shift+d move container to workspace back_and_forth
 bindsym $mod+Shift+s sticky toggle
 bindsym $mod+Shift+w exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
-bindsym $mod+c floating enable, resize set 576 589, move position 0 589
+bindsym $mod+c floating enable, resize set 768 709, move position 0 709, sticky enable
 bindsym $mod+m move workspace to output right
 bindsym $mod+n move workspace to output left
 # volume
-bindsym XF86AudioMute exec amixer -qD pulse set Master toggle
-bindsym XF86AudioLowerVolume exec amixer -qD pulse set Master 5%- unmute
-bindsym XF86AudioRaiseVolume exec amixer -qD pulse set Master 5%+ unmute
-# mic
-bindsym XF86AudioMicMute exec amixer -qD pulse set 'Capture' toggle
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && killall -SIGUSR1 i3status
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && killall -SIGUSR1 i3status
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && killall -SIGUSR1 i3status
 # power
-bindsym $mod+XF86LaunchA exec ~/bin/lock.sh
-bindsym $mod+XF86Explorer exec --no-startup-id i3lock -i ~/.wallpaper.png && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
+bindsym $mod+XF86LaunchA exec xset s activate
+bindsym $mod+XF86Explorer exec xset s activate && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
 # screen
 set $bl_notify notify-send -t 1 "☀ $(xbacklight -get | xargs printf %.0f)"
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && $bl_notify
@@ -177,6 +176,7 @@ exec emacs --daemon
 exec nm-applet
 exec setxkbmap -option "ctrl:swapcaps"
 exec xrdb -merge ~/.Xresources
+exec xss-lock -n "notify-send -t 30000 -u critical \"Locking screen soon\"" -l -- xsecurelock
 
 # colors
 set $background #201a10
