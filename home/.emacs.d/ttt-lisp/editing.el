@@ -8,6 +8,9 @@
 (setq tab-width 4)
 (setq-default indent-tabs-mode nil) ; spaces, not tabs
 
+;; column-width
+(setq-default fill-column 80) ; til the day I die
+
 ;; give C-x C-m and C-c C-m functionality of M-x
 (global-set-key "\C-x\C-m" 'execute-extended-command)
 (global-set-key "\C-c\C-m" 'execute-extended-command)
@@ -125,6 +128,10 @@ File suffix is used to determine what program to run."
 ;; IDO
 (require 'ido)
 (ido-mode t)
+(ido-everywhere 1)
+
+(require 'ido-completing-read+)
+(ido-ubiquitous-mode 1)
 
 ;; Persp mode
 (unless (fboundp 'with-eval-after-load)
@@ -134,9 +141,17 @@ File suffix is used to determine what program to run."
 
 (with-eval-after-load "persp-mode-autoloads"
   (setq wg-morph-on nil) ;; switch off animation of restoring window configuration
-  (add-hook 'after-init-hook #'(lambda () (persp-mode 1))))
+  (setq persp-autokill-buffer-on-remove 'kill-weak)
+  (add-hook 'after-init-hook
+    #'(lambda () (persp-mode 1))))
+
+(with-eval-after-load "persp-mode"
+  (setq persp-set-ido-hooks t))
 
 (setq persp-auto-resume-time 0)
+(defun ttt-compilation-buffer-name (mode)
+  (format "*%s:%s*" (downcase mode) (safe-persp-name (get-current-persp))))
+(setq compilation-buffer-name-function 'ttt-compilation-buffer-name)
 
 ;;; thingatpt
 (require 'thingatpt)
