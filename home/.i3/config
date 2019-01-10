@@ -176,7 +176,7 @@ exec emacs --daemon
 exec nm-applet
 exec setxkbmap -option "ctrl:swapcaps"
 exec xrdb -merge ~/.Xresources
-exec xss-lock -n "notify-send -t 30000 -u critical \"Locking screen soon\"" -l -- xsecurelock
+exec xss-lock -n "notify-send -t 30000 -u critical 'Locking screen soon'" -l -- xsecurelock
 
 # colors
 set $background #201a10
