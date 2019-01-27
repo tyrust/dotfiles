@@ -1,26 +1,27 @@
 ! Font things
-*font:        xft:ubuntu mono:pixelsize=14:style=regular,\
+#define font_pixelsize 14
+*font:        xft:ubuntu mono:pixelsize=font_pixelsize:style=regular,\
               xft:Symbola:pixelsize=10
-*boldFont:    xft:ubuntu mono:pixelsize=14:style=bold
+*boldFont:    xft:ubuntu mono:pixelsize=font_pixelsize:style=bold
 
 ! URxvt things
 URxvt.scrollBar: false
 URxvt.letterSpace: -1
 URxvt.urgentOnBell: true
 
-URxvt.perl-ext-common: default,matcher
+URxvt.perl-ext-common: default,matcher,font-size
 URxvt.url-launcher: sensible-browser
 URxvt.keysym.C-u: perl:matcher:last
 URxvt.keysym.M-u: perl:matcher:list
 
 ! Emacs things
-emacs.font: Ubuntu Mono:pixelsize=14
+emacs.font: Ubuntu Mono:pixelsize=font_pixelsize
 emacs.menuBar: off
 emacs.toolBar: off
 emacs.verticalScrollBars: off
 
 ! cursor
-Xcursor.size: 14
+Xcursor.size: font_pixelsize
 
 ! Solarized color scheme for the X Window System
 !
