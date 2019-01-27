@@ -20,6 +20,8 @@
 (global-set-key "\C-x\C-k" 'kill-region)
 (global-set-key "\C-c\C-k" 'kill-region)
 
+(global-set-key "\C-cr" 'ff-find-other-file)
+
 ;; run current file, bind to <f8>
 (defun run-current-file ()
   "Execute or compile the current file.
@@ -231,5 +233,72 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 ;; Tramp
 (setq tramp-default-method "ssh")
 
+
+;; autocomplete
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(setq company-idle-delay              0
+      company-minimum-prefix-length   2
+      company-show-numbers            t
+      company-tooltip-limit           20
+      company-dabbrev-downcase        nil
+      )
+
+(defun complete-or-indent ()
+  (interactive)
+  (if (company-manual-begin)
+      (company-complete-common)
+          (indent-according-to-mode)))
+;(local-set-key (kbd "TAB") 'complete-or-indent)
+;(local-set-key [tab] 'complete-or-indent)
+
+;;; https://github.com/company-mode/company-mode/wiki/Switching-from-AC#setting-up-similar-popup-behavior
+(defun my-company-visible-and-explicit-action-p ()
+  (and (company-tooltip-visible-p)
+       (company-explicit-action-p)))
+
+(defun company-ac-setup ()
+  "Sets up `company-mode' to behave similarly to `auto-complete-mode'."
+  (setq company-require-match nil)
+  (setq company-auto-complete #'my-company-visible-and-explicit-action-p)
+  (setq company-frontends '(company-echo-metadata-frontend
+                            company-pseudo-tooltip-unless-just-one-frontend-with-delay
+                            company-preview-frontend))
+  (define-key company-active-map [tab] 'complete-or-indent)
+  ;  'company-select-next-if-tooltip-visible-or-complete-selection)
+  (define-key company-active-map (kbd "TAB") 'complete-or-indent)
+  ;  'company-select-next-if-tooltip-visible-or-complete-selection)
+  (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
+  (define-key company-active-map (kbd "<backtab>") 'company-select-previous))
+
+(eval-after-load 'company
+  (lambda ()
+    (set-face-attribute
+     'company-preview
+     nil
+     :background (face-attribute 'company-preview-common :background))))
+
+(company-ac-setup)
+
+(require 'ycmd)
+(require 'company-ycmd)
+(require 'flycheck-ycmd)
+
+(company-ycmd-setup)
+(flycheck-ycmd-setup)
+
+;(add-hook 'after-init-hook #'global-ycmd-mode)
+(add-hook 'c++-mode-hook 'ycmd-mode)
+;(add-hook 'python-mode-hook 'ycmd-mode)
+(set-variable 'ycmd-server-command '("python" "/home/tyrus/src/ycmd/ycmd"))
+(set-variable 'ycmd-extra-conf-whitelist '("~/src/*"))
+;(set-variable 'ycmd-request-msg-level -1)
+
+(elpy-enable)
+(setq python-shell-interpreter "jupyter"
+      python-shell-interpreter-args "console --simple-prompt"
+      python-shell-prompt-detect-failure-warning nil)
+;(add-to-list 'python-shell-completion-native-disabled-interpreters
+;             "jupyter")
 
 (provide 'editing)
