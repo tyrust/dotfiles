@@ -11,10 +11,15 @@
 (setq ttt-lisp-dir (expand-file-name "ttt-lisp" ttt-emacs-config-dir))
 (setq site-lisp-dir
       (expand-file-name "site-lisp" ttt-emacs-config-dir))
+(setq package-dir
+      (expand-file-name "packages" ttt-emacs-config-dir))
 
 ;; Set up load path
 (add-to-list 'load-path ttt-lisp-dir)
 (add-to-list 'load-path site-lisp-dir)
+(let ((default-directory  package-dir))
+  (normal-top-level-add-to-load-path '("."))
+  (normal-top-level-add-subdirs-to-load-path))
 
 ;; Keep emacs Custom-settings in separate file
 (setq custom-file (expand-file-name "custom.el" ttt-lisp-dir))
@@ -35,7 +40,9 @@
 
 ; (eval-after-load 'EXAMPLE-mode '(require 'setup-EXAMPLE))
 (eval-after-load 'tex '(require 'setup-latex))
-(eval-after-load 'go-mode '(require 'setup-go))
+(require 'setup-go)
+(require 'setup-c)
+
 
 (defun reload ()
   (interactive)
