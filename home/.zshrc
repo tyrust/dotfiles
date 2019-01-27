@@ -18,7 +18,13 @@ if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
 fi
 
-export EDITOR=emacsclient
+# Editors
+export EDITOR='emacsclient'
+export ALTERNATE_EDITOR=""
+e() {
+  nohup emacsclient $@ > /dev/null 2>&1 &
+}
+
 if [ -n "$INSIDE_EMACS" ]; then
   chpwd() { print -P "\033AnSiTc %d" }
   print -P "\033AnSiTu %n"
@@ -40,6 +46,18 @@ man() {
         LESS_TERMCAP_us=$'\e[04;38;5;146m' \
             man "$@"
 }
+
+function tm() {
+    [[ -z "$1" ]] && { echo "usage: tm <session>" >&2; return 1; }
+    tmux new -ADs $1
+}
+
+function __tmux-sessions() {
+    local -a sessions
+    sessions=(${(f)"$(tmux list-sessions -F '#{session_name}')"})
+    _describe -t sessions 'sessions' sessions
+}
+compdef __tmux-sessions tm
 
 if [ -f ~/.bash_aliases ]; then
   source ~/.bash_aliases

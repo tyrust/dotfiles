@@ -1,2 +1,3 @@
 alias reload=". ~/.zshrc && echo '~/.zshrc reloaded'"
-alias t="tmux new -ADs"
+alias TIMETOSCHLEEB="systemctl suspend"
+alias TIMETODIE="poweroff"
