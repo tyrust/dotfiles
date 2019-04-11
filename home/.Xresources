@@ -11,8 +11,9 @@ URxvt.urgentOnBell: true
 
 URxvt.perl-ext-common: default,matcher,font-size
 URxvt.url-launcher: sensible-browser
-URxvt.keysym.C-u: perl:matcher:last
-URxvt.keysym.M-u: perl:matcher:list
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
+URxvt.matcher.pattern.1: \\b(b|go)/[\\w\\-\\@;\\/?:&=%\\$.+!*\\x27,~#]+
 
 ! Emacs things
 emacs.font: Ubuntu Mono:pixelsize=font_pixelsize
