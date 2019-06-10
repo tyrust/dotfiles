@@ -3,10 +3,12 @@
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
 set $mod Mod4
+set $fontFace Ubuntu
+set $fontSize 10
 
 # font for window titles. ISO 10646 = Unicode
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-font xft:Ubuntu, 10
+font xft:$fontFace, $fontSize
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -92,11 +94,11 @@ bindsym $mod+Shift+parenleft move workspace number 9
 bindsym $mod+Shift+parenright move workspace number 10
 
 # reload the configuration file
-bindsym $mod+Shift+C exec i3-msg reload
+bindsym $mod+Shift+c exec i3-msg reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+R exec i3-msg restart
+bindsym $mod+Shift+r exec i3-msg restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+E exit
+bindsym $mod+Shift+e exec sh -c "[ $(echo $'no\nyes' | dmenu -fn '$fontFace-$fontSize' -nb '$background' -nf '$gray' -sb '$background' -sf '$foreground' -i -p 'Really exit i3 X session?') = 'yes' ] && i3-msg exit"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -143,9 +145,12 @@ bindsym $mod+r mode "resize"
 # Most of the above is the default configuation.
 # Below lies my nonsense.
 
+# behavior
+workspace_layout tabbed
+
 # exec
 bindsym $mod+Shift+Return exec xset s activate
-bindsym $mod+x exec dmenu_run -nb '$background' -nf '$gray' -sb '$background' -sf '$foreground' -p '#!'
+bindsym $mod+x exec dmenu_run -fn '$fontFace-$fontSize' -nb '$background' -nf '$gray' -sb '$background' -sf '$foreground' -p '#!'
 # navigation
 bindsym $mod+d workspace back_and_forth
 # window management
