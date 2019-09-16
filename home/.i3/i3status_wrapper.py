@@ -70,9 +70,9 @@ def handle_line():
     print_line(prefix+json.dumps(j))
 
 def song_info():
-    cmd =  ("xwininfo -tree -root | grep -v xwininfo"
+    cmd =  ("xwininfo -tree -root "
             " | grep '\- Google Play Music'"
-            " | cut -d\\\" -f2 | perl -pe 's/(.*?) \- (.*?) \-.*/\\1 - \\2/'")
+            " | sed 's/[^\"]*\"\\(.*\\) - Google Play Music.*/\\1/'")
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
     out, err = p.communicate()
     return str.rstrip(out).decode('utf-8')
