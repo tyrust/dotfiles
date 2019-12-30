@@ -93,6 +93,8 @@
 /set weechat.look.window_title "weechat"
 /set irc.server_default.msg_part ""
 /set irc.server_default.msg_quit ""
+### Autosave the windows layout.  Buffers layout is managed by autosort.
+/set weechat.look.save_layout_on_exit windows
 ## Binds
 /key bind meta-n /bar toggle nicklist
 /key bind meta-meta2-5~ /window page_up -window 2
