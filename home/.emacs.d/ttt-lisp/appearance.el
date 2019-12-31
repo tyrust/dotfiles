@@ -15,17 +15,15 @@
 (setq uniquify-buffer-name-style 'reverse)
 
 ;; Themes
-; Solarized - https://github.com/sellout/emacs-color-theme-solarized
+;; Solarized - https://github.com/sellout/emacs-color-theme-solarized
 (add-to-list 'custom-theme-load-path
     (expand-file-name "themes/emacs-color-theme-solarized" ttt-emacs-config-dir))
 (setq frame-background-mode 'dark)
 (load-theme 'solarized t)
-(if (daemonp)
-    (add-hook 'after-make-frame-functions
-        (lambda (frame)
-            (with-selected-frame frame
-                (enable-theme 'solarized))))
-    (enable-theme 'solarized))
+
+;; TODO: migrate to github.com/bbatsov/solarized-emacs, which is much more
+;; maintained, but term doesn't work (see URL
+;; `https://github.com/bbatsov/solarized-emacs/issues/18').
 
 ; Modeline - https://github.com/Malabarba/smart-mode-line
 (setq sml/theme 'respectful)
