@@ -2,7 +2,7 @@
 # See https://github.com/susam/inwee
 
 /set irc.server_default.capabilities account-notify,away-notify,cap-notify,multi-prefix,server-time,znc.in/server-time-iso,znc.in/self-message
-/script install autosort.py colorize_nicks.py spell_correction.py go.py
+/script install autosort.py colorize_nicks.py spell_correction.py go.py screen_away.py
 
 # Solarized Colors
 /color alias 008 base03
@@ -95,6 +95,12 @@
 /set irc.server_default.msg_quit ""
 ### Autosave the windows layout.  Buffers layout is managed by autosort.
 /set weechat.look.save_layout_on_exit windows
+### screen_away.py
+/set plugins.var.python.screen_away.message "Away"
+/set plugins.var.python.screen_away.ignore "bitlbee"
+/set plugins.var.python.screen_away.command_on_attach "/msg -server bitlbee &bitlbee account on"
+/set plugins.var.python.screen_away.command_on_detach "/msg -server bitlbee &bitlbee account off"
+
 ## Binds
 /key bind meta-n /bar toggle nicklist
 /key bind meta-meta2-5~ /window page_up -window 2
