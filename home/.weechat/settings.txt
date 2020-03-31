@@ -74,10 +74,11 @@
 # Input Bar
 /set weechat.bar.input.items [input_prompt]+(away),[input_search],[input_paste],input_text,[spell_correction]
 /set weechat.bar.input.conditions "${active}"
-## aspell
-/aspell enable
-/set aspell.check.suggestions 3
-/set aspell.check.default_dict "en"
+## spell
+/spell enable
+/set spell.check.suggestions 3
+/set spell.check.default_dict "en"
+/set spell.option.ignore-case "true"
 ## go.py
 /key bind meta-g /go
 /set plugins.var.python.go.color_number yellow,default
