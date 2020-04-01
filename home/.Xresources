@@ -9,7 +9,7 @@ URxvt.scrollBar: false
 URxvt.letterSpace: -1
 URxvt.urgentOnBell: true
 
-URxvt.perl-ext-common: default,matcher,font-size
+URxvt.perl-ext-common: default,matcher,font-size,osc-xterm-clipboard
 URxvt.url-launcher: sensible-browser
 URxvt.keysym.C-Delete: perl:matcher:last
 URxvt.keysym.M-Delete: perl:matcher:list
