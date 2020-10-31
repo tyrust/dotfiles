@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 # This script is a simple wrapper which prefixes each i3status line with custom
@@ -27,6 +27,7 @@
 import sys
 import json
 import subprocess
+
 
 # This first stuff was by the original author.
 def get_governor():
@@ -63,19 +64,48 @@ def handle_line():
     # insert information into the start of the json, but could be anywhere
     for s in j:
         if s['name'] == 'volume':
-            i = song_info()
+            i = playerctl_info()
             if i:
                 s['full_text'] += ' ' + i if i else ''
     # and echo back new encoded json
     print_line(prefix+json.dumps(j))
 
+
 def song_info():
-    cmd =  ("xwininfo -tree -root "
-            " | grep '\- Google Play Music'"
-            " | sed 's/[^\"]*\"\\(.*\\) - Google Play Music.*/\\1/'")
+    cmd =  (
+        "xwininfo -tree -root "
+        " | grep -P '\- (?:Google Play|YouTube) Music'"
+        " | sed 's/[^\"]*\"\\(.*\\) - \\(Google Play\|YouTube\\) Music.*/\\1/'"
+    )
     p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
-    out, err = p.communicate()
-    return str.rstrip(out).decode('utf-8')
+    stdout, _ = p.communicate()
+    info = str.rstrip(stdout.decode('utf-8'))
+    if info != "Home":
+      return info
+    return None
+
+
+def playerctl_info():
+    delim = "!tyrus!"
+    format_str = delim.join(("{{artist}}", "{{title}}", "{{status}}"))
+    cmd = "playerctl metadata --format '{}'".format(format_str)
+
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+    stdout, _ = p.communicate()
+    info = str.rstrip(stdout.decode('utf-8'))
+    if not info:
+        return None
+    artist, title, status = info.split(delim)
+    if "- Twitch" in title:
+        return None
+    # Youtube Music adds "- Topic"
+    artist = artist.replace(" - Topic", "")
+    # Bandcamp adds the play icon when playing
+    title = title.replace("▶", "").strip()
+    status = "⏵" if status == "Playing" else "⏸"
+    now_playing = " - ".join(filter(None, (title, artist)))
+    return status + now_playing
+
 
 if __name__ == '__main__':
     # Skip the first line which contains the version header.
