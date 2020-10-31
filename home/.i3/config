@@ -14,7 +14,7 @@ font xft:$fontFace, $fontSize
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -159,19 +159,27 @@ bindsym $mod+Shift+s sticky toggle
 bindsym $mod+Shift+w exec i3-input -F 'rename workspace to "%s"' -P 'New name: '
 bindsym $mod+c floating enable, resize set 768 709, move position 0 709, sticky enable
 bindsym $mod+m move workspace to output right
-bindsym $mod+n move workspace to output left
+bindsym $mod+n move workspace to output up
+bindsym $mod+Shift+m exec i3-input -F 'move workspace to output "%s"' -P 'Output: '
 # volume
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && killall -SIGUSR1 i3status
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && killall -SIGUSR1 i3status
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle && killall -SIGUSR1 i3status
+# media
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioNext exec playerctl next
 # power
 bindsym $mod+XF86LaunchA exec xset s activate
 bindsym $mod+XF86Explorer exec xset s activate && dbus-send --system --dest=org.freedesktop.UPower --type=method_call --print-reply /org/freedesktop/UPower org.freedesktop.UPower.Suspend
 # screen
-set $bl_notify notify-send -t 1 "☀ $(xbacklight -get | xargs printf %.0f)"
+set $bl_notify notify-send -t 300 "☀ $(xbacklight -get | xargs printf %.0f)"
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 && $bl_notify
 bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10 && $bl_notify
+bindsym Shift+XF86MonBrightnessDown exec --no-startup-id xbacklight -set 0 && $bl_notify
+bindsym Shift+XF86MonBrightnessUp exec --no-startup-id xbacklight -set 100 && $bl_notify
 # disable chrome close-all keybinding, see:
 # https://code.google.com/p/chromium/issues/detail?id=313391
 bindsym Control+Shift+q exec :
