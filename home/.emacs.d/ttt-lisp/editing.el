@@ -287,18 +287,28 @@ With numeric prefix arg DEC, decrement the integer by DEC amount."
 (company-ycmd-setup)
 (flycheck-ycmd-setup)
 
-;(add-hook 'after-init-hook #'global-ycmd-mode)
 (add-hook 'c++-mode-hook 'ycmd-mode)
-;(add-hook 'python-mode-hook 'ycmd-mode)
 (set-variable 'ycmd-server-command '("python" "/home/tyrus/src/ycmd/ycmd"))
 (set-variable 'ycmd-extra-conf-whitelist '("~/src/*"))
 ;(set-variable 'ycmd-request-msg-level -1)
 
-(elpy-enable)
-(setq python-shell-interpreter "jupyter"
-      python-shell-interpreter-args "console --simple-prompt"
-      python-shell-prompt-detect-failure-warning nil)
-;(add-to-list 'python-shell-completion-native-disabled-interpreters
-;             "jupyter")
+;;; python
+(require 'eglot)
+(add-hook 'python-mode-hook 'eglot-ensure)
+(add-hook 'python-mode-hook 'python-black-on-save-mode)
+(setq python-shell-interpreter "python3"
+      python-shell-interpreter-args "-i")
+;; (set-variable 'help-at-pt-display-when-idle t)
+;; (eval-after-load 'flymake
+;;   (lambda ()
+;;     (require 'flymake-diagnostic-at-point)
+;;     (add-hook 'flymake-mode-hook #'flymake-diagnostic-at-point-mode)))
+;      python-shell-prompt-detect-failure-warning nil)
+
+;;; markdown
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 (provide 'editing)
