@@ -18,7 +18,7 @@
 ;; Solarized - https://github.com/sellout/emacs-color-theme-solarized
 (add-to-list 'custom-theme-load-path
     (expand-file-name "themes/emacs-color-theme-solarized" ttt-emacs-config-dir))
-(setq frame-background-mode 'dark)
+(setq frame-background-mode 'light)
 (load-theme 'solarized t)
 
 ;; TODO: migrate to github.com/bbatsov/solarized-emacs, which is much more
